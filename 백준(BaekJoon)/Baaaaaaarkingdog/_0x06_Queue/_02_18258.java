@@ -2,9 +2,7 @@ package _0x06_Queue;
 // 큐 2
 
 import java.io.*;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class _02_18258 {
     public static void main(String[] args) throws IOException {
@@ -13,18 +11,16 @@ public class _02_18258 {
         StringTokenizer st;
 
         int N = Integer.parseInt(br.readLine());
-        Queue<Integer> queue = new LinkedList<>();
+        Deque<Integer> queue = new LinkedList<>();
+        ArrayList<Integer> list = new ArrayList<>();
 
         int num = 0;
-        int backNum = 0;
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
-            String str = st.nextToken();
 
-            switch (str) {
+            switch (st.nextToken()) {
                 case "push":
-                    num = Integer.parseInt(st.nextToken());
-                    queue.add(num);
+                    queue.add(Integer.parseInt(st.nextToken()));
                     break;
                 case "pop":
                     if (!queue.isEmpty()) {
@@ -52,13 +48,7 @@ public class _02_18258 {
                     break;
                 case "back":
                     if (!queue.isEmpty()) {
-                        for (int j = 0; j < queue.size(); j++) {
-                            if (j == queue.size() - 1) {
-                                backNum = queue.peek();
-                            }
-                            queue.add(queue.poll());
-                        }
-                        bw.write(backNum + "\n");
+                        bw.write(queue.peekLast() + "\n");
                     } else {
                         bw.write(-1 + "\n");
                     }
